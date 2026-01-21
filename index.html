@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Егор & Виктория — 10 октября 2026</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;1,500&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --green: #4b6b4a;
+  --purple: #6b4c7a;
+  --angle: 0deg;
+}
+
+/* Анимированный градиент для рамок */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate-border {
+  from { --angle: 0deg; }
+  to { --angle: 360deg; }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  color: #2c2c2c;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Базовый градиент фона */
+.background-base {
+  position: fixed;
+  inset: 0;
+  z-index: -4;
+  background: linear-gradient(145deg, #f7faf5 0%, #f5f3fb 100%);
+}
+
+/* SVG‑паттерн сердечек и цветочков: реже и крупнее */
+.background-hearts {
+  position: fixed;
+  inset: -80px 0 0 0;
+  z-index: -3;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'>\
+<defs>\
+  <linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'>\
+    <stop offset='0%' stop-color='%23a5c9a5'/>\
+    <stop offset='100%' stop-color='%23b9a4cf'/>\
+  </linearGradient>\
+</defs>\
+<rect width='200' height='200' fill='none'/>\
+<path d='M40 60 C40 48 50 40 60 40 C68 40 74 45 76 50 C78 45 84 40 92 40 C104 40 114 48 114 60 C114 82 76 100 76 100 C76 100 40 82 40 60 Z' fill='url(%23g)' fill-opacity='0.55'/>\
+<path d='M120 130 C120 118 130 110 140 110 C148 110 154 115 156 120 C158 115 164 110 172 110 C184 110 194 118 194 130 C194 152 156 170 156 170 C156 170 120 152 120 130 Z' fill='url(%23g)' fill-opacity='0.45'/>\
+<circle cx='34' cy='142' r='6' fill='%23a5c9a5' fill-opacity='0.45'/>\
+<circle cx='34' cy='142' r='2' fill='%23ffffff' fill-opacity='0.8'/>\
+<circle cx='158' cy='42' r='6' fill='%23b9a4cf' fill-opacity='0.45'/>\
+<circle cx='158' cy='42' r='2' fill='%23ffffff' fill-opacity='0.8'/>\
+</svg>");
+  background-repeat: repeat;
+  background-size: 260px 260px;
+}
+
+/* Отдельный слой кружков по всему фону */
+.background-circles {
+  position: fixed;
+  inset: -80px 0 0 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.3;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(144, 188, 144, 0.55) 0, transparent 50%),
+    radial-gradient(circle at 85% 18%, rgba(185, 164, 207, 0.55) 0, transparent 50%),
+    radial-gradient(circle at 18% 80%, rgba(160, 198, 160, 0.55) 0, transparent 50%),
+    radial-gradient(circle at 88% 82%, rgba(170, 141, 195, 0.55) 0, transparent 50%),
+    radial-gradient(circle at 50% 10%, rgba(170, 198, 170, 0.4) 0, transparent 55%),
+    radial-gradient(circle at 50% 90%, rgba(177, 151, 204, 0.4) 0, transparent 55%);
+}
+
+/* Параллакс‑слой (светлые пятна) */
+.parallax-layer {
+  position: fixed;
+  inset: -80px 0 0 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.6) 0, transparent 55%),
+    radial-gradient(circle at 70% 90%, rgba(255, 255, 255, 0.6) 0, transparent 55%);
+  mix-blend-mode: screen;
+}
+
+main {
+  position: relative;
+}
+
+section {
+  max-width: 860px;
+  margin: auto;
+  padding: 90px 20px;
+  position: relative;
+}
+
+.decor {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  opacity: 0.08;
+  z-index: -1;
+}
+
+.green-decor {
+  background: var(--green);
+  top: -60px;
+  left: -80px;
+}
+
+.purple-decor {
+  background: var(--purple);
+  bottom: -80px;
+  right: -60px;
+}
+
+h1, h2 {
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 1px;
+}
+
+.decor-line {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--green), var(--purple));
+  margin: 30px auto;
+}
+
+.hero {
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 64px;
+}
+
+.hero span {
+  color: var(--green);
+}
+
+.date {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.timer div {
+  border-radius: 18px;
+  padding: 18px 22px;
+  min-width: 90px;
+  font-family: 'Playfair Display', serif;
+  background: var(--purple);
+  color: #ffffff;
+  border: none;
+}
+
+.timer span {
+  font-size: 28px;
+  color: #ffffff;
+}
+
+.block {
+  text-align: center;
+}
+
+/* Жирная анимированная градиентная обводка карточек */
+.card-wrapper {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto 32px;
+  border-radius: 26px;
+  padding: 6px;
+  background:
+    conic-gradient(
+      from var(--angle),
+      rgba(75, 107, 74, 0.0),
+      rgba(75, 107, 74, 0.9),
+      rgba(107, 76, 122, 0.98),
+      rgba(75, 107, 74, 0.9),
+      rgba(107, 76, 122, 0.98),
+      rgba(75, 107, 74, 0.0)
+    );
+  animation: rotate-border 18s linear infinite;
+}
+
+.card-block {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 22px;
+  padding: 32px 26px 34px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.07);
+}
+
+.card-block h2 {
+  margin-top: 0;
+}
+
+.program div {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 10px;
+}
+
+.colors {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.color {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+}
+
+.green { background: var(--green); }
+.purple { background: var(--purple); }
+
+.card-text {
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* Анкета ближе к карточкам */
+section.form-section {
+  padding-top: 20px;
+}
+
+/* Плейсхолдеры в select: полупрозрачный текст */
+select.placeholder-select option[disabled] {
+  color: rgba(44, 44, 44, 0.5);
+}
+
+form {
+  max-width: 420px;
+  margin: 24px auto 0;
+  display: grid;
+  gap: 14px;
+}
+
+input, select, textarea, button {
+  padding: 12px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+  background: transparent;
+}
+
+button {
+  background: linear-gradient(90deg, var(--green), var(--purple));
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.map-button {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 28px;
+  background: linear-gradient(90deg, var(--green), var(--purple));
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 30px;
+  font-family: inherit;
+}
+
+footer {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 14px;
+}
+
+/* Адаптация под телефон */
+@media (max-width: 600px) {
+  section {
+    padding: 60px 16px;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .date {
+    font-size: 18px;
+  }
+
+  .timer div {
+    padding: 12px 14px;
+    min-width: 72px;
+  }
+
+  .timer span {
+    font-size: 22px;
+  }
+
+  .card-block {
+    padding: 24px 18px 26px;
+  }
+
+  .card-text {
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  form {
+    max-width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background-base"></div>
+<div class="background-hearts" id="bg-hearts"></div>
+<div class="background-circles" id="bg-circles"></div>
+<div class="parallax-layer" id="parallax-layer"></div>
+
+<main>
+<section class="hero">
+  <div class="decor green-decor"></div>
+  <div class="decor purple-decor"></div>
+
+  <h1>Егор <span>&</span> Виктория</h1>
+  <div class="date">10.10.2026</div>
+
+  <div class="decor-line"></div>
+
+  <div class="timer">
+    <div><span id="days"></span><br>дней</div>
+    <div><span id="hours"></span><br>часов</div>
+    <div><span id="minutes"></span><br>минут</div>
+    <div><span id="seconds"></span><br>секунд</div>
+  </div>
+</section>
+
+<section>
+  <div class="card-wrapper">
+    <div class="block card-block">
+      <h2>Дорогие гости!</h2>
+      <div class="decor-line"></div>
+      <p class="card-text">
+        Мы будем счастливы разделить с вами особенный день, в который мы станем семьёй 🤍
+      </p>
+    </div>
+  </div>
+
+  <div class="card-wrapper">
+    <div class="block card-block">
+      <h2>Программа дня</h2>
+      <div class="decor-line"></div>
+      <div class="program">
+        <div><strong>10:10</strong> — Церемония</div>
+        <div><strong>13:00</strong> — Сбор гостей</div>
+        <div><strong>16:00</strong> — Банкет</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-wrapper">
+    <div class="block card-block">
+      <h2>Локация</h2>
+      <div class="decor-line"></div>
+      <p class="card-text">Нижний Новгород, гостиница Marins</p>
+      <a
+        class="map-button"
+        href="https://yandex.ru/maps/org/marins_nizhniy_novgorod/242337076312/?indoorLevel=1&ll=43.958205%2C56.325549&z=16.91"
+        target="_blank"
+      >
+        Открыть карту
+      </a>
+    </div>
+  </div>
+
+  <div class="card-wrapper">
+    <div class="block card-block">
+      <h2>Dress code</h2>
+      <div class="decor-line"></div>
+      <p class="card-text">
+        Будем рады, если ваши образы будут в зелёных и фиолетовых тонах.
+      </p>
+      <div class="colors">
+        <div class="color green"></div>
+        <div class="color purple"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-wrapper">
+    <div class="block card-block">
+      <h2>Небольшая просьба</h2>
+      <div class="decor-line"></div>
+      <p class="card-text">
+        Пожалуйста, вместо цветов вы можете подарить практичный подарок
+        или вложиться в наш медовый месяц ✨
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="block form-section">
+  <h2>Анкета гостя</h2>
+  <div class="decor-line"></div>
+
+  <form id="rsvp">
+    <input name="name" placeholder="Имя и фамилия" required>
+
+    <select name="attendance" class="placeholder-select" required>
+      <option value="" disabled selected hidden>Сможете ли присутствовать?</option>
+      <option>С радостью приду</option>
+      <option>К сожалению, не смогу</option>
+    </select>
+
+    <select name="plus" class="placeholder-select">
+      <option value="" disabled selected hidden>Будете ли с парой?</option>
+      <option>Да</option>
+      <option>Нет</option>
+    </select>
+
+    <textarea name="comment" placeholder="Комментарий"></textarea>
+    <button type="submit">Отправить</button>
+  </form>
+</section>
+
+<footer>
+  С любовью, Егор и Виктория 💚💜
+</footer>
+</main>
+
+<script>
+// Таймер
+const daysEl = document.getElementById('days');
+const hoursEl = document.getElementById('hours');
+const minutesEl = document.getElementById('minutes');
+const secondsEl = document.getElementById('seconds');
+
+const weddingDate = new Date("2026-10-10T13:00:00").getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const diff = weddingDate - now;
+
+  if (diff <= 0) {
+    daysEl.textContent = "0";
+    hoursEl.textContent = "0";
+    minutesEl.textContent = "0";
+    secondsEl.textContent = "0";
+    return;
+  }
+
+  daysEl.textContent = Math.floor(diff / (1000*60*60*24));
+  hoursEl.textContent = Math.floor((diff / (1000*60*60)) % 24);
+  minutesEl.textContent = Math.floor((diff / (1000*60)) % 60);
+  secondsEl.textContent = Math.floor((diff / 1000) % 60);
+}, 1000);
+
+/* Плейсхолдер‑option: скрываем после выбора */
+document.querySelectorAll('select.placeholder-select').forEach(select => {
+  select.addEventListener('change', () => {
+    const placeholder = select.querySelector('option[disabled][hidden]');
+    if (placeholder) {
+      placeholder.hidden = true;
+    }
+  });
+});
+
+/* Отправка в Apps Script — через application/x-www-form-urlencoded */
+document.getElementById("rsvp").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const form = e.target;
+
+  const data = {
+    name: form.name.value || "",
+    attendance: form.attendance.value || "",
+    plus: form.plus.value || "",
+    comment: form.comment.value || ""
+  };
+
+  const body = Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+
+  fetch("https://script.google.com/macros/s/AKfycbxspF8MPUdoZbxfQMkTP_ER5A0Csqd0H_S31mdcFCzh6yDSNIfPAbSrbzAmZgYv5pl2wg/exec", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+    },
+    body: body
+  })
+  .then(() => {
+    form.reset();
+    alert("Спасибо! Ваш ответ сохранён 🤍");
+  })
+  .catch(() => {
+    alert("Не получилось отправить ответ. Попробуйте ещё раз.");
+  });
+});
+
+/* Параллакс */
+const parallaxLayer = document.getElementById('parallax-layer');
+const bgHearts = document.getElementById('bg-hearts');
+const bgCircles = document.getElementById('bg-circles');
+
+window.addEventListener('scroll', () => {
+  const offset = window.pageYOffset;
+  const slow = offset * 0.25;
+  const slower = offset * 0.12;
+
+  parallaxLayer.style.transform = 'translateY(' + slow + 'px)';
+  bgHearts.style.transform = 'translateY(' + slower + 'px)';
+  bgCircles.style.transform = 'translateY(' + slower + 'px)';
+});
+</script>
+
+</body>
+</html>
